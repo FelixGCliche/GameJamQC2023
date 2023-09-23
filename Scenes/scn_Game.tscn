@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://6xux1ynqbcwp"]
+[gd_scene load_steps=8 format=3 uid="uid://6xux1ynqbcwp"]
 
 [ext_resource type="Script" path="res://Gameplay/GameController.cs" id="1_28fv0"]
 [ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="2_lhbr3"]
-[ext_resource type="PackedScene" uid="uid://0ok3b5pit4dp" path="res://Gameplay/Platform/prf_platform.tscn" id="3_kk71r"]
+[ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="3_kk71r"]
+[ext_resource type="Resource" uid="uid://c1haq2dy4xgyy" path="res://System/Color/ColorData/Data/Red.tres" id="3_mos4l"]
+[ext_resource type="Resource" uid="uid://xba7wo08y1gp" path="res://System/Color/ColorData/Data/Blue.tres" id="3_o8n3g"]
+[ext_resource type="Resource" uid="uid://bmgyj2nd0eu56" path="res://System/Color/ColorData/Data/Green.tres" id="3_rvjwm"]
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="4_dk5u8"]
-[ext_resource type="Script" path="res://Gameplay/Player/PlayerController.cs" id="5_uco8f"]
 
 [node name="scn_Game" type="Node2D"]
 script = ExtResource("1_28fv0")
@@ -16,19 +18,21 @@ scale = Vector2(1920, 32)
 [node name="Platform2" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(960, 1064)
 scale = Vector2(1920, 32)
+colorData = ExtResource("3_mos4l")
 
 [node name="Platform3" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(16, 540)
 scale = Vector2(32, 1080)
+colorData = ExtResource("3_rvjwm")
 
 [node name="Platform4" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(1904, 540)
 scale = Vector2(32, 1080)
+colorData = ExtResource("3_o8n3g")
 
 [node name="Player" parent="." instance=ExtResource("4_dk5u8")]
 position = Vector2(934, 611)
 scale = Vector2(0.5, 0.5)
-script = ExtResource("5_uco8f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
