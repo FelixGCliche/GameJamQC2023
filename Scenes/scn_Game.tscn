@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://6xux1ynqbcwp"]
+[gd_scene load_steps=7 format=3 uid="uid://6xux1ynqbcwp"]
 
 [ext_resource type="Script" path="res://Gameplay/GameController.cs" id="1_28fv0"]
 [ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="2_lhbr3"]
 [ext_resource type="PackedScene" uid="uid://0ok3b5pit4dp" path="res://Gameplay/Platform/prf_platform.tscn" id="3_kk71r"]
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="4_dk5u8"]
 [ext_resource type="Script" path="res://Gameplay/Player/PlayerController.cs" id="5_uco8f"]
+[ext_resource type="Script" path="res://Gameplay/test.cs" id="6_uc0xy"]
 
 [node name="scn_Game" type="Node2D"]
 script = ExtResource("1_28fv0")
@@ -34,3 +35,6 @@ script = ExtResource("5_uco8f")
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_lhbr3")]
 visible = false
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("6_uc0xy")
