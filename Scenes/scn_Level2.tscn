@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8e6afnmupd20"]
+[gd_scene load_steps=5 format=3 uid="uid://c7jr3v3lqvaoa"]
 
 [ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="1_bpbnq"]
-[ext_resource type="PackedScene" uid="uid://0ok3b5pit4dp" path="res://Gameplay/Platform/prf_platform.tscn" id="2_43wwi"]
+[ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="2_43wwi"]
 [ext_resource type="PackedScene" uid="uid://dl2nd3gb0w5jb" path="res://Gameplay/Door/prf_Door.tscn" id="3_t0vx4"]
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="4_6gxos"]
 

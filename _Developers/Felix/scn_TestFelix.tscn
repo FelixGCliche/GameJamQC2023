@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://csxasgn47x8cn"]
+[gd_scene load_steps=4 format=3 uid="uid://cluu4jfudcppl"]
 
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="1_h3qqm"]
 [ext_resource type="Texture2D" uid="uid://cu8bmakkoovuv" path="res://Gameplay/Player/capsule.png" id="2_4n2uf"]
-[ext_resource type="Script" path="res://Gameplay/Player/PlayerController.cs" id="2_6ewxe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bbbc"]
 size = Vector2(924, 20)
@@ -11,7 +10,6 @@ size = Vector2(924, 20)
 
 [node name="Player" parent="." instance=ExtResource("1_h3qqm")]
 position = Vector2(923, 296)
-script = ExtResource("2_6ewxe")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(910, 620)
