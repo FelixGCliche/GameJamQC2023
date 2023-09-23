@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://0ok3b5pit4dp"]
+
+[ext_resource type="Script" path="res://Gameplay/Platform/Platform.cs" id="1_3g208"]
+[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://Gameplay/Platform/whiteTexture.png" id="2_cwy46"]
+
+[node name="Platform" type="Node2D"]
+scale = Vector2(100, 100)
+script = ExtResource("1_3g208")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_cwy46")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
+polygon = PackedVector2Array(0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5)
