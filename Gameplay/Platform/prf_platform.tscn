@@ -6,8 +6,6 @@
 [node name="Platform" type="Node2D"]
 scale = Vector2(100, 100)
 script = ExtResource("1_3g208")
-metadata/XScale = 0
-metadata/YScale = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
