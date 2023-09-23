@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://Gameplay/Platform/whiteTexture.png" id="2_cwy46"]
 
 [node name="Platform" type="Node2D"]
-scale = Vector2(100, 100)
+scale = Vector2(32, 32)
 script = ExtResource("1_3g208")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -14,4 +14,4 @@ texture = ExtResource("2_cwy46")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 visible = false
-polygon = PackedVector2Array(0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5)
+polygon = PackedVector2Array(0.5, 0.5, -0.5, 0.5, -0.5, 0.0199355, -0.5, -0.5, 0.5, -0.5)

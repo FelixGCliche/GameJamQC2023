@@ -42,7 +42,7 @@ namespace GameJamQC2023.Player
 
             Velocity = movementVelocity;
             MoveAndSlide();
-            GD.Print(Velocity);
+            //GD.Print(Velocity);
         }
 
         private Vector2 Move(Vector2 velocity)
