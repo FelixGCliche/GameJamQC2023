@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using GameJamQC2023.Player;
 
 public partial class Door : Area2D
 {
@@ -7,7 +8,7 @@ public partial class Door : Area2D
 	public override void _Ready()
 	{
 		if((bool)GetMeta("isStartDoor"))
-			GetParent().GetNode<CharacterBody2D>("Player").Position = Position;
+			GetParent().GetNode<PlayerController>("Player").Position = Position;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

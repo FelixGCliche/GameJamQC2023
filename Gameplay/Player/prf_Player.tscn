@@ -9,7 +9,6 @@ size = Vector2(64, 64)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_doi4v")
-ColorData = null
 
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
 script = ExtResource("3_q6s0d")
