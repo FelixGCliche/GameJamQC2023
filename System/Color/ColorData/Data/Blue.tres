@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_046t7")
-name = "Red"
-color = Color(1, 0, 0, 1)
+name = "Blue"
+color = Color(0, 0, 1, 1)
