@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://txo3tqwxooox"]
+
+[ext_resource type="Script" path="res://System/Color/ColorData/ColorData.cs" id="1_2voms"]
+
+[resource]
+script = ExtResource("1_2voms")
+name = "Black"
+color = Color(0, 0, 0, 1)

@@ -1,15 +1,35 @@
 using Godot;
 using System;
 
-public partial class Platform : Node2D
+public partial class Platform : StaticBody2D, IColorable
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    [Export]
+    private ColorData colorData = GD.Load<ColorData>("res://System/Color/ColorData/Data/Black.tres");
+    public ColorData ColorData => colorData;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void _Ready()
+    {
+        GetNode<Sprite2D>("Sprite2D").Modulate = ColorData.Color;
+        base._Ready();
+    }
+
+    public void SendColorData()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ReceiveColorData(ColorData colorData)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void BlendColorData()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void DropColorData()
+    {
+        throw new NotImplementedException();
+    }
 }
