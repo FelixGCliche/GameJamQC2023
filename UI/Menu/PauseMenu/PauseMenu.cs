@@ -8,7 +8,6 @@ using System;
 			Visible = false;
 		}
 
-
 		private void OnExitButtonPressed()
 		{
 			GetTree().Paused = false;

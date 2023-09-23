@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://6xux1ynqbcwp"]
+[gd_scene load_steps=4 format=3 uid="uid://6xux1ynqbcwp"]
+
+[ext_resource type="Script" path="res://Gameplay/GameController.cs" id="1_28fv0"]
+[ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/PauseMenu.tscn" id="2_lhbr3"]
+[ext_resource type="PackedScene" uid="uid://0ok3b5pit4dp" path="res://Gameplay/Platform/platform.tscn" id="3_kk71r"]
 
 [node name="scn_Game" type="Node2D"]
+script = ExtResource("1_28fv0")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_lhbr3")]
+visible = false
+offset_left = 1012.0
+offset_top = 516.0
+offset_right = 1012.0
+offset_bottom = 516.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Platform" parent="." instance=ExtResource("3_kk71r")]
+position = Vector2(939, 473)
