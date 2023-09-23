@@ -65,7 +65,7 @@ public partial class BaseColorController : Node2D, IColorable
 script = ExtResource("1_doi4v")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_4lrlp")
+texture = ExtResource("1_8qvwl")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_1tpr6")

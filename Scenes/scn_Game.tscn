@@ -7,34 +7,69 @@
 [ext_resource type="Resource" uid="uid://xba7wo08y1gp" path="res://System/Color/ColorData/Data/Blue.tres" id="3_o8n3g"]
 [ext_resource type="Resource" uid="uid://bmgyj2nd0eu56" path="res://System/Color/ColorData/Data/Green.tres" id="3_rvjwm"]
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="4_dk5u8"]
+[ext_resource type="PackedScene" uid="uid://dl2nd3gb0w5jb" path="res://Gameplay/Door/prf_Door.tscn" id="6_lsxpd"]
 
 [node name="scn_Game" type="Node2D"]
 script = ExtResource("1_28fv0")
 
-[node name="Platform" parent="." instance=ExtResource("3_kk71r")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_lhbr3")]
+visible = false
+
+[node name="Ceiling" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(960, 16)
 scale = Vector2(1920, 32)
 
-[node name="Platform2" parent="." instance=ExtResource("3_kk71r")]
+[node name="Floor" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(960, 1064)
 scale = Vector2(1920, 32)
 colorData = ExtResource("3_mos4l")
 
-[node name="Platform3" parent="." instance=ExtResource("3_kk71r")]
+[node name="LeftWall" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(16, 540)
 scale = Vector2(32, 1080)
 colorData = ExtResource("3_rvjwm")
 
-[node name="Platform4" parent="." instance=ExtResource("3_kk71r")]
+[node name="RightWall" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(1904, 540)
 scale = Vector2(32, 1080)
 colorData = ExtResource("3_o8n3g")
 
+[node name="DoorStart" parent="." instance=ExtResource("6_lsxpd")]
+position = Vector2(955, 978)
+metadata/isStartDoor = true
+
+[node name="DoorFinish" parent="." instance=ExtResource("6_lsxpd")]
+position = Vector2(1131, 234)
+metadata/newScenePath = "Scenes/scn_Level2.tscn"
+
+[node name="Platform5" parent="." instance=ExtResource("3_kk71r")]
+position = Vector2(372, 883)
+scale = Vector2(200, 32)
+
+[node name="Platform6" parent="." instance=ExtResource("3_kk71r")]
+position = Vector2(903, 756)
+scale = Vector2(300, 32)
+
+[node name="Platform8" parent="." instance=ExtResource("3_kk71r")]
+position = Vector2(1423, 568)
+scale = Vector2(300, 32)
+
+[node name="Platform9" parent="." instance=ExtResource("3_kk71r")]
+position = Vector2(1119, 312)
+scale = Vector2(300, 32)
+
 [node name="Player" parent="." instance=ExtResource("4_dk5u8")]
 position = Vector2(934, 611)
 scale = Vector2(0.5, 0.5)
+script = ExtResource("5_uco8f")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Platform7" parent="." instance=ExtResource("3_kk71r")]
+position = Vector2(376, 530)
+scale = Vector2(200, 32)
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_lhbr3")]
-visible = false
+[node name="Platform10" parent="." instance=ExtResource("3_kk71r")]
+position = Vector2(392, 242)
+scale = Vector2(200, 32)
