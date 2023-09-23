@@ -4,8 +4,7 @@ using System;
 public partial class Platform : StaticBody2D, IColorable
 {
     [Export]
-    private ColorData colorData = GD.Load<ColorData>("res://System/Color/ColorData/Data/Black.tres");
-    public ColorData ColorData => colorData;
+    public ColorData ColorData { get; private set; } = GD.Load<ColorData>("res://System/Color/ColorData/Data/Black.tres");
 
     public override void _Ready()
     {
