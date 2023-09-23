@@ -1,24 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmfhach2lfdgv"]
+[gd_scene load_steps=5 format=3 uid="uid://csxasgn47x8cn"]
 
-[ext_resource type="PackedScene" uid="uid://cd6o5becvu1ll" path="res://Gameplay/Player/prf_Player.tscn" id="1_2lwk8"]
-[ext_resource type="Texture2D" uid="uid://cu8bmakkoovuv" path="res://Gameplay/Player/capsule.png" id="2_2vrj0"]
+[ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="1_h3qqm"]
+[ext_resource type="Texture2D" uid="uid://cu8bmakkoovuv" path="res://Gameplay/Player/capsule.png" id="2_4n2uf"]
+[ext_resource type="Script" path="res://Gameplay/Player/PlayerController.cs" id="2_6ewxe"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wserh"]
-size = Vector2(1050, 159)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bbbc"]
+size = Vector2(924, 20)
 
 [node name="scn_TestFelix" type="Node2D"]
-position = Vector2(892, 444)
 
-[node name="Player" parent="." instance=ExtResource("1_2lwk8")]
+[node name="Player" parent="." instance=ExtResource("1_h3qqm")]
+position = Vector2(923, 296)
+script = ExtResource("2_6ewxe")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(910, 620)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-3, 225.5)
-shape = SubResource("RectangleShape2D_wserh")
+shape = SubResource("RectangleShape2D_1bbbc")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(-3.34309, 225.172)
+[node name="Capsule" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-1.33472, 0.594631)
 rotation = 1.5708
-scale = Vector2(1.59397, 5.82404)
-texture = ExtResource("2_2vrj0")
+scale = Vector2(0.215124, 5.06385)
+texture = ExtResource("2_4n2uf")

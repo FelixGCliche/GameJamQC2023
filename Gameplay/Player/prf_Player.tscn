@@ -1,17 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd6o5becvu1ll"]
+[gd_scene load_steps=3 format=3 uid="uid://c385vmeqqbw3d"]
 
-[ext_resource type="Script" path="res://Gameplay/Player/PlayerController.cs" id="1_v20kb"]
-[ext_resource type="Texture2D" uid="uid://cu8bmakkoovuv" path="res://Gameplay/Player/capsule.png" id="2_knelb"]
+[ext_resource type="Texture2D" uid="uid://cu8bmakkoovuv" path="res://Gameplay/Player/capsule.png" id="1_4lrlp"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmgit"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1tpr6"]
 radius = 50.0
-height = 182.0
+height = 180.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_v20kb")
 
-[node name="Capsule" type="Sprite2D" parent="."]
-texture = ExtResource("2_knelb")
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_4lrlp")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_kmgit")
+shape = SubResource("CapsuleShape2D_1tpr6")
