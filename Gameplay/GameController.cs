@@ -13,9 +13,21 @@ public partial class GameController : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!Input.IsActionPressed("Pause")) 
-			return;
-		pauseMenu.Visible = true;
-		GetTree().Paused = true;
+		Pause();
+		ResetLevel();
 	}
+
+	private void  Pause ()
+	{
+        if (!Input.IsActionPressed("Pause"))
+            return;
+        pauseMenu.Visible = true;
+        GetTree().Paused = true;
+    }
+
+    private void ResetLevel()
+    {
+        if (Input.IsActionPressed("Reset"))
+			GetTree().ReloadCurrentScene();
+    }
 }

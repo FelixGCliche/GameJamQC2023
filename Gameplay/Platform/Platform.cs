@@ -55,10 +55,10 @@ namespace GameJamQC2023.Platform
 
 		public void ResetColor()
 		{
-			HeldColors = new Queue<Godot.Color>();
-			for (var i = 0; i < 2; i++)
-				HeldColors.Enqueue(Colors.Black);
-			spriteTexture.SelfModulate = GetBlendedColor();
+			//HeldColors = new Queue<Godot.Color>();
+			//for (var i = 0; i < 2; i++)
+			//	HeldColors.Enqueue(Colors.Black);
+			//spriteTexture.SelfModulate = GetBlendedColor();
 		}
 	}
 }

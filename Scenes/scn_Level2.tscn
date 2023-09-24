@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7jr3v3lqvaoa"]
+[gd_scene load_steps=8 format=3 uid="uid://c7jr3v3lqvaoa"]
 
 [ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="1_bpbnq"]
 [ext_resource type="Script" path="res://Gameplay/GameController.cs" id="1_spepf"]
 [ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="2_43wwi"]
 [ext_resource type="PackedScene" uid="uid://dybi0c2fkvoj4" path="res://UI/Screen/SceneTransitionScreen/prf_sceneTransitionRect.tscn" id="2_utkvp"]
 [ext_resource type="PackedScene" uid="uid://dl2nd3gb0w5jb" path="res://Gameplay/Door/prf_Door.tscn" id="3_t0vx4"]
+[ext_resource type="PackedScene" uid="uid://bfxh8584a1vx2" path="res://UI/HUD/ColorHUD.tscn" id="4_2hhpx"]
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="4_6gxos"]
 
 [node name="scn_Level2" type="Node2D"]
@@ -17,6 +18,8 @@ layer = 2
 visible = false
 
 [node name="SceneTransitionRect" parent="CanvasLayer" instance=ExtResource("2_utkvp")]
+
+[node name="ColorHUD" parent="CanvasLayer" instance=ExtResource("4_2hhpx")]
 
 [node name="Ceiling" parent="." instance=ExtResource("2_43wwi")]
 position = Vector2(960, 16)
@@ -39,32 +42,39 @@ position = Vector2(333, 983)
 metadata/isStartDoor = true
 
 [node name="DoorFinish" parent="." instance=ExtResource("3_t0vx4")]
-position = Vector2(1442, 253)
-metadata/colorToUnlock = Color(0, 0, 1, 1)
+position = Vector2(1036, 249)
+metadata/newScenePath = "Scenes/scn_Level3.tscn"
+metadata/colorToUnlock = Color(0, 1, 1, 1)
 
-[node name="Platform5" parent="." instance=ExtResource("2_43wwi")]
-position = Vector2(1331, 843)
-scale = Vector2(200, 32)
-
-[node name="Platform6" parent="." instance=ExtResource("2_43wwi")]
-position = Vector2(773, 860)
+[node name="Platform11" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(1584, 404)
 scale = Vector2(300, 32)
+baseColor = Color(0, 1, 1, 1)
 
 [node name="Platform8" parent="." instance=ExtResource("2_43wwi")]
-position = Vector2(1529, 353)
+position = Vector2(1034, 330)
 scale = Vector2(300, 32)
 
 [node name="Platform9" parent="." instance=ExtResource("2_43wwi")]
-position = Vector2(981, 546)
+position = Vector2(1480, 641)
 scale = Vector2(300, 32)
+baseColor = Color(0, 1, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("4_6gxos")]
 position = Vector2(1216, 560)
 
 [node name="Platform7" parent="." instance=ExtResource("2_43wwi")]
-position = Vector2(453, 572)
+position = Vector2(597, 978)
 scale = Vector2(200, 32)
+baseColor = Color(1, 0, 0, 1)
 
 [node name="Platform10" parent="." instance=ExtResource("2_43wwi")]
-position = Vector2(241, 365)
+position = Vector2(853, 879)
 scale = Vector2(200, 32)
+baseColor = Color(0, 0, 1, 1)
+
+[node name="Platform13" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(480, 448)
+scale = Vector2(200, 32)
+
+[connection signal="HeldColorsUpdated" from="Player" to="CanvasLayer/ColorHUD" method="OnPlayerHeldColorsUpdated"]
