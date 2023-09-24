@@ -7,15 +7,19 @@ public partial class Door : Area2D
 	Sprite2D lockSprite;
 	private Color lockColor = Colors.Black;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	private SceneTransitionRect transitionRect;
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 		lockSprite = GetNode<Sprite2D>("LockSprite2D");
+			
+        transitionRect = GetParent().GetNode<CanvasLayer>("CanvasLayer").GetNode<ColorRect>("SceneTransitionRect") as SceneTransitionRect;
 
-		if ((bool) GetMeta("isStartDoor"))
+        if ((bool)GetMeta("isStartDoor"))
 		{
-			lockSprite.Visible = false;
-			GetParent().GetNode<PlayerController>("Player").Position = Position;
+            lockSprite.Visible = false;
+            GetParent().GetNode<PlayerController>("Player").Position = Position;
 		}
 		else
 		{
@@ -42,7 +46,7 @@ public partial class Door : Area2D
         {
             soundPlayer.Stream = OpenSound;
             soundPlayer.Play();
-            GetTree().ChangeSceneToFile((string)GetMeta("newScenePath"));
+            transitionRect.transitionTo((string)GetMeta("newScenePath"));
         }
 		else
         {
