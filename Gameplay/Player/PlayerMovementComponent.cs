@@ -18,6 +18,9 @@ namespace GameJamQC2023.Player
 		private float maxAirSpeed = 600.0f;
 
 		[Export]
+		private float dashSpeed = 2000;
+
+		[Export]
 		private float jumpSpeed = -1650.0f;
 
 		[Export]
@@ -32,9 +35,16 @@ namespace GameJamQC2023.Player
 		[Export]
 		private float shortJumpMultiplier = -0.12f;
 
+		[Export]
+		private float dashTime = 0.1f;
+
 		private int maxNbJump = 2;
 		private int nbJump = 1;
 		private bool doubleJumpEnabled;
+
+		private bool dashEnabled = true;
+		private int nbDash = 1;
+		private float dashTimer;
 
 		private float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
@@ -50,29 +60,39 @@ namespace GameJamQC2023.Player
 
 			if (!IsOnFloor())
 				movementVelocity.Y += gravity * (float) delta;
-
-			movementVelocity = Move(movementVelocity);
+			
+			var direction = Input.GetAxis("MoveLeft", "MoveRight");
+			movementVelocity = Move(movementVelocity, direction);
 			if (Input.IsActionJustReleased("Jump"))
 				nbJump--;
 			movementVelocity = Jump(movementVelocity);
 
+			if (dashEnabled && Input.IsActionJustPressed("Dash") && !IsOnFloor() && nbDash > 0)
+			{
+				dashTimer = dashTime;
+				nbDash--;
+			}
+
+			movementVelocity = Dash(movementVelocity, direction, (float) delta);
 
 			Velocity = movementVelocity;
 			MoveAndSlide();
 
 			if (IsOnFloor())
 				nbJump = doubleJumpEnabled ? maxNbJump : 1;
+			ResetDash();
 		}
 
-		private Vector2 Move(Vector2 velocity)
+		private Vector2 Move(Vector2 velocity, float direction)
 		{
-			var direction = Input.GetAxis("MoveLeft", "MoveRight");
-
 			if (direction != 0)
 				velocity.X += direction * acceleration;
 			else
 				velocity.X = Mathf.MoveToward(Velocity.X, 0, deceleration);
 
+			if (dashEnabled && dashTimer > 0)
+				return velocity;
+			
 			velocity.X = IsOnFloor()
 				? Mathf.Clamp(velocity.X, -maxGroundSpeed, maxGroundSpeed)
 				: Mathf.Clamp(velocity.X, -maxAirSpeed, maxAirSpeed);
@@ -94,9 +114,35 @@ namespace GameJamQC2023.Player
 			return velocity;
 		}
 
+		private Vector2 Dash(Vector2 velocity,float direction, float delta)
+		{
+			if (dashTimer <= 0) 
+				return velocity;
+			
+			dashTimer -= delta;
+
+			if (direction != 0)
+				velocity.X += direction * acceleration;
+			velocity.Y = 0;
+			velocity.X = Mathf.Clamp(velocity.X, -dashSpeed, dashSpeed);
+
+			return velocity;
+		}
+
+		private void ResetDash()
+		{
+			if (dashEnabled && IsOnFloor() && dashTimer < 0)
+				nbDash = 1;
+		}
+
 		private void OnRedPowerUpdated(bool enabled)
 		{
 			doubleJumpEnabled = enabled;
+		}
+
+		private void OnGreenPowerUpdated(bool enabled)
+		{
+			dashEnabled = enabled;
 		}
 	}
 }
