@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using GameJamQC2023.Color;
+using GameJamQC2023.Utils;
 using Godot;
 
 namespace GameJamQC2023.Platform
@@ -6,36 +9,45 @@ namespace GameJamQC2023.Platform
 	public partial class Platform : StaticBody2D, IColorable
 	{
 		[Export]
-		private ColorData colorData;
+		private Godot.Color currentColor = new(0f, 0f, 0f);
 
-		ColorData IColorable.ColorData => colorData;
-
+		public Queue<Godot.Color> HeldColors { get; private set; }
+		
 		private Sprite2D spriteTexture;
 
 		public override void _Ready()
 		{
-			colorData ??= GD.Load<ColorData>("res://System/Color/ColorData/Data/Transparent.tres");
-			
 			spriteTexture = GetNode<Sprite2D>("Sprite2D");
-			spriteTexture.SelfModulate = colorData.Color;
+			
+			HeldColors = new Queue<Godot.Color>();
+			for (var i = 0; i < 2; i++)
+				HeldColors.Enqueue(Colors.Black);
+			EnqueueColor(currentColor);
+			
+			spriteTexture.SelfModulate = GetBlendedColor();
 		}
 
-		public void ReceiveColorData(IColorable sender)
+		public Godot.Color GetBlendedColor()
 		{
-			colorData = sender.ColorData;
-			spriteTexture.SelfModulate = colorData.Color;
+			var colorArray = HeldColors.ToArray();
+			return colorArray[0].RgbBlend(colorArray[1]);
 		}
 
-		public void BlendColorData(IColorable sender)
+		public Godot.Color EnqueueColor(Godot.Color newColor)
 		{
-			colorData.Blend(sender.ColorData.Color);
-			spriteTexture.SelfModulate = colorData.Color;
-		}
+			var discard = HeldColors.TryDequeue(out var result) ? result : Colors.Transparent;
+			if(discard != Colors.Transparent)
+			
+			if (HeldColors.Count != 1)
+			{
+				GD.Print($"Held Colors count {HeldColors.Count}, expected 1");
+				return Colors.Transparent;
+			}
 
-		public void DropColorData()
-		{
-			colorData.Reset();
-			spriteTexture.SelfModulate = colorData.Color;
+			HeldColors.Enqueue(newColor);
+			spriteTexture.SelfModulate = GetBlendedColor();
+
+			return discard;
 		}
 
 
@@ -44,24 +56,12 @@ namespace GameJamQC2023.Platform
 			var colorable = body.GetParent<IColorable>();
 			if (colorable == null)
 				return;
+
+			var platformColor = GetBlendedColor();
+			var colorableColor = colorable.GetBlendedColor();
+
+			colorable.EnqueueColor(GetBlendedColor());
 			
-			GD.Print($"Colorable is {colorable.ColorData} \t {Name} is {colorData}");
-			
-			if (colorable.ColorData.Name != "Transparent" && colorData.Name == "Transparent")
-			{
-				ReceiveColorData(colorable);
-				colorable.DropColorData();
-			}
-			else if (colorable.ColorData.Name == "Transparent" && colorData.Name != "Transparent")
-			{
-				colorable.ReceiveColorData(this);
-				DropColorData();
-			}
-			else if (colorable.ColorData.Name != "Transparent" && colorData.Name != "Transparent")
-			{
-				colorable.BlendColorData(this);
-				DropColorData();
-			}
 		}
 	}
 }

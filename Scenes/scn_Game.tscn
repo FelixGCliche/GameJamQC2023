@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bo22e7avjfd3w"]
+[gd_scene load_steps=6 format=3 uid="uid://bo22e7avjfd3w"]
 
 [ext_resource type="Script" path="res://Gameplay/GameController.cs" id="1_28fv0"]
 [ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="2_lhbr3"]
 [ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="3_kk71r"]
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="4_dk5u8"]
-[ext_resource type="Resource" uid="uid://c1haq2dy4xgyy" path="res://System/Color/ColorData/Data/Red.tres" id="5_k8kcb"]
 [ext_resource type="PackedScene" uid="uid://dl2nd3gb0w5jb" path="res://Gameplay/Door/prf_Door.tscn" id="6_lsxpd"]
-[ext_resource type="Resource" uid="uid://bmgyj2nd0eu56" path="res://System/Color/ColorData/Data/Green.tres" id="6_sbf5e"]
-[ext_resource type="Resource" uid="uid://xba7wo08y1gp" path="res://System/Color/ColorData/Data/Blue.tres" id="7_7ug4k"]
 
 [node name="scn_Game" type="Node2D"]
 script = ExtResource("1_28fv0")
@@ -45,17 +42,17 @@ metadata/newScenePath = "Scenes/scn_Level2.tscn"
 [node name="Platform5" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(372, 883)
 scale = Vector2(200, 32)
-colorData = ExtResource("5_k8kcb")
+currentColor = Color(1, 0, 0, 1)
 
 [node name="Platform6" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(903, 756)
 scale = Vector2(300, 32)
-colorData = ExtResource("6_sbf5e")
+currentColor = Color(0, 1, 0, 1)
 
 [node name="Platform8" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(1423, 568)
 scale = Vector2(300, 32)
-colorData = ExtResource("7_7ug4k")
+currentColor = Color(0, 0, 1, 1)
 
 [node name="Platform9" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(1119, 312)
