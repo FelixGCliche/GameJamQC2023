@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UI/Menu/PauseMenu/PauseMenu.cs" id="1_0sc76"]
 [ext_resource type="Texture2D" uid="uid://bi64tw55aj556" path="res://UI/Menu/Shift.png" id="2_bq0kd"]
-[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://Gameplay/Platform/whiteTexture.png" id="2_lgckc"]
+[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://UI/whiteTexture.png" id="2_lgckc"]
 [ext_resource type="Texture2D" uid="uid://bpr0tejhb5sx4" path="res://UI/Menu/a.png" id="3_drkc6"]
 [ext_resource type="Texture2D" uid="uid://cpqxe77dmob51" path="res://UI/Menu/d.png" id="4_uv71d"]
 [ext_resource type="Texture2D" uid="uid://cu4ws50n74wx5" path="res://UI/Menu/w.png" id="5_li6ci"]
