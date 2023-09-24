@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkbuvx31u8fd3"
-path="res://.godot/imported/whiteTexture.png-6cae47c544155af833756cf5a728041d.ctex"
+uid="uid://uyj401l1v64g"
+path="res://.godot/imported/GhostPlayer.png-f79708a079c88f0c73320ca061296929.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Gameplay/Platform/whiteTexture.png"
-dest_files=["res://.godot/imported/whiteTexture.png-6cae47c544155af833756cf5a728041d.ctex"]
+source_file="res://UI/GhostPlayer.png"
+dest_files=["res://.godot/imported/GhostPlayer.png-f79708a079c88f0c73320ca061296929.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cii0ie08pbkxp"]
+[gd_scene load_steps=5 format=3 uid="uid://drfj2w2ujn5e"]
 
 [ext_resource type="Script" path="res://Gameplay/Platform/Platform.cs" id="1_3g208"]
-[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://Gameplay/Platform/whiteTexture.png" id="2_cwy46"]
+[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://UI/whiteTexture.png" id="3_npd68"]
 [ext_resource type="Resource" uid="uid://txo3tqwxooox" path="res://System/Color/ColorData/Data/Black.tres" id="4_o3b7i"]
 
 [sub_resource type="CSharpScript" id="CSharpScript_qnq4h"]
@@ -59,10 +59,10 @@ public partial class BaseColorController : Node2D, IColorable
 
 [node name="Platform" type="StaticBody2D"]
 script = ExtResource("1_3g208")
-colorData = ExtResource("4_o3b7i")
+colorData = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_cwy46")
+texture = ExtResource("3_npd68")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false

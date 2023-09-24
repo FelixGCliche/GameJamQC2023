@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Gameplay/GameController.cs" id="1_28fv0"]
 [ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="2_lhbr3"]
-[ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="3_kk71r"]
+[ext_resource type="PackedScene" uid="uid://drfj2w2ujn5e" path="res://Gameplay/Platform/prf_platform.tscn" id="3_kk71r"]
 [ext_resource type="Resource" uid="uid://c1haq2dy4xgyy" path="res://System/Color/ColorData/Data/Red.tres" id="3_mos4l"]
 [ext_resource type="Resource" uid="uid://xba7wo08y1gp" path="res://System/Color/ColorData/Data/Blue.tres" id="3_o8n3g"]
 [ext_resource type="Resource" uid="uid://bmgyj2nd0eu56" path="res://System/Color/ColorData/Data/Green.tres" id="3_rvjwm"]
