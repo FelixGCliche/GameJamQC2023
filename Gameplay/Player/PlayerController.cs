@@ -8,7 +8,11 @@ namespace GameJamQC2023.Player
 	public partial class PlayerController : Node2D, IColorable
 	{
 		[Signal]
-		public delegate void HeldColorsUpdatedEventHandler(Godot.Color currentColor);
+		public delegate void BlendedColorsUpdatedEventHandler(Godot.Color currentColor);
+		
+		[Signal]
+		public delegate void HeldColorsUpdatedEventHandler(Godot.Color[] colors);
+		
 			
 		private Sprite2D spriteTexture;
 		public Queue<Godot.Color> HeldColors { get; private set; }
@@ -83,8 +87,11 @@ namespace GameJamQC2023.Player
 		private void UpdateColor()
 		{
 			var newColor = GetBlendedColor();
+			
+			EmitSignal(SignalName.BlendedColorsUpdated, newColor);
+			EmitSignal(SignalName.HeldColorsUpdated, HeldColors.ToArray());
+			
 			spriteTexture.SelfModulate = newColor;
-			EmitSignal(SignalName.HeldColorsUpdated, newColor);
 		}
 	}
 }
