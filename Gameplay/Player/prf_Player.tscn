@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c385vmeqqbw3d"]
+[gd_scene load_steps=7 format=3 uid="uid://c385vmeqqbw3d"]
 
 [ext_resource type="Script" path="res://Gameplay/Player/PlayerController.cs" id="1_doi4v"]
 [ext_resource type="Script" path="res://Gameplay/Player/PlayerMovementComponent.cs" id="3_q6s0d"]
 [ext_resource type="Texture2D" uid="uid://b453kn1873034" path="res://Gameplay/Player/player.png" id="3_rpqic"]
+[ext_resource type="Script" path="res://Gameplay/Player/PlayerPowerController.cs" id="4_oxjej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ec37s"]
 size = Vector2(64, 64)
@@ -32,4 +33,9 @@ position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_pgkiq")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
+[node name="PlayerPowerController" type="Node2D" parent="."]
+script = ExtResource("4_oxjej")
+
+[connection signal="HeldColorsUpdated" from="." to="PlayerPowerController" method="OnPlayerHeldColorsUpdated"]
 [connection signal="body_entered" from="PlayerMovementComponent/Area2D" to="." method="OnPlayerBodyEntered"]
+[connection signal="RedPowerUpdated" from="PlayerPowerController" to="PlayerMovementComponent" method="OnRedPowerUpdated"]

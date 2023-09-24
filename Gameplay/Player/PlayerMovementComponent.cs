@@ -21,6 +21,9 @@ namespace GameJamQC2023.Player
 		private float jumpSpeed = -1650.0f;
 
 		[Export]
+		private float doubleJumpSpeed = -1600.0f;
+
+		[Export]
 		private float jumpVelocityFalloff = -1500f;
 
 		[Export]
@@ -29,7 +32,17 @@ namespace GameJamQC2023.Player
 		[Export]
 		private float shortJumpMultiplier = -0.12f;
 
+		private int maxNbJump = 2;
+		private int nbJump = 1;
+		private bool doubleJumpEnabled;
+
 		private float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+
+		public override void _Ready()
+		{
+			if(doubleJumpEnabled)
+				nbJump = maxNbJump;
+		}
 
 		public override void _PhysicsProcess(double delta)
 		{
@@ -39,10 +52,16 @@ namespace GameJamQC2023.Player
 				movementVelocity.Y += gravity * (float) delta;
 
 			movementVelocity = Move(movementVelocity);
-			movementVelocity = Jump(movementVelocity, (float) delta);
+			if (Input.IsActionJustReleased("Jump"))
+				nbJump--;
+			movementVelocity = Jump(movementVelocity);
+
 
 			Velocity = movementVelocity;
 			MoveAndSlide();
+
+			if (IsOnFloor())
+				nbJump = doubleJumpEnabled ? maxNbJump : 1;
 		}
 
 		private Vector2 Move(Vector2 velocity)
@@ -60,13 +79,12 @@ namespace GameJamQC2023.Player
 			return velocity;
 		}
 
-		private Vector2 Jump(Vector2 velocity, float delta)
+		private Vector2 Jump(Vector2 velocity)
 		{
 			var jumped = Input.IsActionJustPressed("Jump");
 			var jumping = Input.IsActionPressed("Jump");
-
-			if (IsOnFloor() && jumped)
-				velocity.Y = jumpSpeed;
+			if (jumped && nbJump > 0)
+				velocity.Y = nbJump < maxNbJump ? doubleJumpSpeed : jumpSpeed;
 
 			if (velocity.Y > jumpVelocityFalloff)
 				velocity += Vector2.Up * gravity * fallMultiplier;
@@ -74,6 +92,11 @@ namespace GameJamQC2023.Player
 				velocity += Vector2.Up * gravity * shortJumpMultiplier;
 
 			return velocity;
+		}
+
+		private void OnRedPowerUpdated(bool enabled)
+		{
+			doubleJumpEnabled = enabled;
 		}
 	}
 }

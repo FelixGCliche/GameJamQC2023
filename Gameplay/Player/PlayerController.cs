@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using GameJamQC2023.Color;
 using GameJamQC2023.Utils;
 using Godot;
@@ -8,6 +7,9 @@ namespace GameJamQC2023.Player
 {
 	public partial class PlayerController : Node2D, IColorable
 	{
+		[Signal]
+		public delegate void HeldColorsUpdatedEventHandler(Godot.Color currentColor);
+			
 		private Sprite2D spriteTexture;
 		public Queue<Godot.Color> HeldColors { get; private set; }
 
@@ -20,6 +22,7 @@ namespace GameJamQC2023.Player
 				HeldColors.Enqueue(Colors.Black);
 			
 			spriteTexture = GetNode<Sprite2D>("PlayerMovementComponent/PlayerSprite");
+			UpdateColor();
 		}
 
 		public override void _Process(double delta)
@@ -53,7 +56,7 @@ namespace GameJamQC2023.Player
 			}
 
 			HeldColors.Enqueue(newColor);
-			spriteTexture.SelfModulate = GetBlendedColor();
+			UpdateColor();
 
 			return discard;
 		}
@@ -63,7 +66,7 @@ namespace GameJamQC2023.Player
 			HeldColors = new Queue<Godot.Color>();
 			for (var i = 0; i < 2; i++)
 				HeldColors.Enqueue(Colors.Black);
-			spriteTexture.SelfModulate = GetBlendedColor();
+			UpdateColor();
 		}
 
 
@@ -75,6 +78,13 @@ namespace GameJamQC2023.Player
 
 			EnqueueColor(colorable.GetBlendedColor());
 			colorable.ResetColor();
+		}
+
+		private void UpdateColor()
+		{
+			var newColor = GetBlendedColor();
+			spriteTexture.SelfModulate = newColor;
+			EmitSignal(SignalName.HeldColorsUpdated, newColor);
 		}
 	}
 }
