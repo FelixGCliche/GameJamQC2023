@@ -8,5 +8,7 @@ namespace GameJamQC2023.Color
         public Godot.Color GetBlendedColor();
 
         public Godot.Color EnqueueColor(Godot.Color newColor);
+
+        public void ResetColor();
     }
 }

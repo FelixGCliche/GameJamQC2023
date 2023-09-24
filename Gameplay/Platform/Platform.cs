@@ -9,7 +9,7 @@ namespace GameJamQC2023.Platform
 	public partial class Platform : StaticBody2D, IColorable
 	{
 		[Export]
-		private Godot.Color currentColor = new(0f, 0f, 0f);
+		private Godot.Color baseColor = new(0f, 0f, 0f);
 
 		public Queue<Godot.Color> HeldColors { get; private set; }
 		
@@ -22,7 +22,7 @@ namespace GameJamQC2023.Platform
 			HeldColors = new Queue<Godot.Color>();
 			for (var i = 0; i < 2; i++)
 				HeldColors.Enqueue(Colors.Black);
-			EnqueueColor(currentColor);
+			EnqueueColor(baseColor);
 			
 			spriteTexture.SelfModulate = GetBlendedColor();
 		}
@@ -35,6 +35,9 @@ namespace GameJamQC2023.Platform
 
 		public Godot.Color EnqueueColor(Godot.Color newColor)
 		{
+			if (newColor == Colors.Black)
+				return Colors.Transparent;
+			
 			var discard = HeldColors.TryDequeue(out var result) ? result : Colors.Transparent;
 			if(discard != Colors.Transparent)
 			
@@ -50,18 +53,12 @@ namespace GameJamQC2023.Platform
 			return discard;
 		}
 
-
-		private void OnPlatformBodyEntered(Node2D body)
+		public void ResetColor()
 		{
-			var colorable = body.GetParent<IColorable>();
-			if (colorable == null)
-				return;
-
-			var platformColor = GetBlendedColor();
-			var colorableColor = colorable.GetBlendedColor();
-
-			colorable.EnqueueColor(GetBlendedColor());
-			
+			HeldColors = new Queue<Godot.Color>();
+			for (var i = 0; i < 2; i++)
+				HeldColors.Enqueue(Colors.Black);
+			spriteTexture.SelfModulate = GetBlendedColor();
 		}
 	}
 }
