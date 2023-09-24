@@ -13,7 +13,7 @@ namespace GameJamQC2023.Player
 		[Signal]
 		public delegate void BluePowerUpdatedEventHandler(bool enabled);
 
-		private void OnPlayerHeldColorsUpdated(Godot.Color currentColor)
+		private void OnPlayerBlendedColorsUpdated(Godot.Color currentColor)
 		{
 			EmitSignal(SignalName.RedPowerUpdated, currentColor.R > 0);
 			EmitSignal(SignalName.GreenPowerUpdated, currentColor.G > 0);
