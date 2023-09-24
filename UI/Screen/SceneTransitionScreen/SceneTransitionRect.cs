@@ -20,14 +20,12 @@ public partial class SceneTransitionRect : ColorRect
 
 	public void transitionTo(string newScenePath)
 	{
-		GD.Print(newScenePath);
 		animPlayer.Play("Fade");
         scenePath = newScenePath;
     }
 
 	private void OnFadeEnded(StringName anim_name)
 	{
-        GD.Print(scenePath);
         GetTree().ChangeSceneToFile(scenePath);
     }
 }
