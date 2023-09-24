@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c385vmeqqbw3d"]
+[gd_scene load_steps=6 format=3 uid="uid://c385vmeqqbw3d"]
 
 [ext_resource type="Script" path="res://Gameplay/Player/PlayerController.cs" id="1_doi4v"]
+[ext_resource type="Resource" uid="uid://txo3tqwxooox" path="res://System/Color/ColorData/Data/Transparent.tres" id="2_k3evq"]
 [ext_resource type="Script" path="res://Gameplay/Player/PlayerMovementComponent.cs" id="3_q6s0d"]
 [ext_resource type="Texture2D" uid="uid://b453kn1873034" path="res://Gameplay/Player/player.png" id="3_rpqic"]
 
@@ -9,11 +10,15 @@ size = Vector2(64, 64)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_doi4v")
+colorData = ExtResource("2_k3evq")
 
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("3_q6s0d")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="PlayerMovementComponent"]
+visible = false
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_ec37s")
 

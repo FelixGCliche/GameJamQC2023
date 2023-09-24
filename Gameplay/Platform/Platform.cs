@@ -1,34 +1,67 @@
+using GameJamQC2023.Color;
 using Godot;
-using System;
 
-public partial class Platform : StaticBody2D, IColorable
+namespace GameJamQC2023.Platform
 {
-	[field: Export]
-	public ColorData ColorData { get; private set; } = GD.Load<ColorData>("res://System/Color/ColorData/Data/Black.tres");
-
-	public override void _Ready()
+	public partial class Platform : StaticBody2D, IColorable
 	{
-		GetNode<Sprite2D>("Sprite2D").Modulate = ColorData.Color;
-		base._Ready();
-	}
+		[Export]
+		private ColorData colorData;
 
-	public void SendColorData()
-	{
-		throw new NotImplementedException();
-	}
+		ColorData IColorable.ColorData => colorData;
 
-	public void ReceiveColorData(ColorData colorData)
-	{
-		throw new NotImplementedException();
-	}
+		private Sprite2D spriteTexture;
 
-	public void BlendColorData()
-	{
-		throw new NotImplementedException();
-	}
+		public override void _Ready()
+		{
+			colorData ??= GD.Load<ColorData>("res://System/Color/ColorData/Data/Transparent.tres");
+			
+			spriteTexture = GetNode<Sprite2D>("Sprite2D");
+			spriteTexture.SelfModulate = colorData.Color;
+		}
 
-	public void DropColorData()
-	{
-		throw new NotImplementedException();
+		public void ReceiveColorData(IColorable sender)
+		{
+			colorData = sender.ColorData;
+			spriteTexture.SelfModulate = colorData.Color;
+		}
+
+		public void BlendColorData(IColorable sender)
+		{
+			colorData.Blend(sender.ColorData.Color);
+			spriteTexture.SelfModulate = colorData.Color;
+		}
+
+		public void DropColorData()
+		{
+			colorData.Reset();
+			spriteTexture.SelfModulate = colorData.Color;
+		}
+
+
+		private void OnPlatformBodyEntered(Node2D body)
+		{
+			var colorable = body.GetParent<IColorable>();
+			if (colorable == null)
+				return;
+			
+			GD.Print($"Colorable is {colorable.ColorData} \t {Name} is {colorData}");
+			
+			if (colorable.ColorData.Name != "Transparent" && colorData.Name == "Transparent")
+			{
+				ReceiveColorData(colorable);
+				colorable.DropColorData();
+			}
+			else if (colorable.ColorData.Name == "Transparent" && colorData.Name != "Transparent")
+			{
+				colorable.ReceiveColorData(this);
+				DropColorData();
+			}
+			else if (colorable.ColorData.Name != "Transparent" && colorData.Name != "Transparent")
+			{
+				colorable.BlendColorData(this);
+				DropColorData();
+			}
+		}
 	}
 }

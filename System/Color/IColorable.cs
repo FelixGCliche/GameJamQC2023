@@ -1,8 +1,11 @@
-﻿public interface IColorable
+﻿namespace GameJamQC2023.Color
 {
-    public ColorData ColorData { get; }
-    public void SendColorData();
-    public void ReceiveColorData(ColorData colorData);
-    public void BlendColorData();
-    public void DropColorData();
+    public interface IColorable
+    {
+        public ColorData ColorData { get; }
+    
+        public void ReceiveColorData(IColorable sender);
+        public void BlendColorData(IColorable sender);
+        public void DropColorData();
+    }
 }

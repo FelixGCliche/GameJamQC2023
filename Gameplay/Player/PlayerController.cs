@@ -1,30 +1,40 @@
+using GameJamQC2023.Color;
 using Godot;
 
 namespace GameJamQC2023.Player
 {
 	public partial class PlayerController : Node2D, IColorable
 	{
-		[field: Export]
-		public ColorData ColorData { get; private set; } = GD.Load<ColorData>("res://System/Color/ColorData/Data/Black.tres");
+		[Export]
+		private ColorData colorData;
 
-		public void SendColorData()
+		public ColorData ColorData => colorData;
+
+		private Sprite2D spriteTexture;
+
+		public override void _Ready()
 		{
-			throw new System.NotImplementedException();
+			colorData ??= GD.Load<ColorData>("res://System/Color/ColorData/Data/Transparent.tres");
+			spriteTexture = GetNode<Sprite2D>("PlayerMovementComponent/PlayerSprite");
 		}
 
-		public void ReceiveColorData(ColorData colorData)
+		public void ReceiveColorData(IColorable sender)
 		{
-			throw new System.NotImplementedException();
+			colorData = sender.ColorData;
+			GD.Print(colorData);
+			spriteTexture.SelfModulate = colorData.Color;
 		}
 
-		public void BlendColorData()
+		public void BlendColorData(IColorable sender)
 		{
-			throw new System.NotImplementedException();
+			colorData.Blend(sender.ColorData.Color);
+			spriteTexture.SelfModulate = colorData.Color;
 		}
 
 		public void DropColorData()
 		{
-			throw new System.NotImplementedException();
+			// colorData.Reset();
+			// spriteTexture.SelfModulate = colorData.Color;
 		}
 	}
 }
