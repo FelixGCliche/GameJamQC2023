@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl2nd3gb0w5jb"]
+
+[ext_resource type="Script" path="res://Gameplay/Door/Door.cs" id="1_bqgxc"]
+[ext_resource type="Texture2D" uid="uid://5a8bf0tunpot" path="res://Gameplay/Door/Door.png" id="2_ghcw1"]
+[ext_resource type="Texture2D" uid="uid://dgapsfloy4ggv" path="res://Gameplay/Door/Lock.png" id="3_qfsav"]
+
+[node name="Door" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_bqgxc")
+metadata/newScenePath = ""
+metadata/isStartDoor = false
+metadata/colorToUnlock = Color(0, 0, 0, 1)
+
+[node name="DoorSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ghcw1")
+
+[node name="LockSprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -30)
+texture = ExtResource("3_qfsav")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(18, -60.5, 18, -59, 32, -48, 32, -45.7, 38, -37.7, 38, -34.4, 41, -26.4, 41, 58, -48, 58, -48, -29.4, -42.4, -44, -41, -44, -34, -54, -31.8, -54, -25.8, -60, -23.4, -60, -14, -63.4, -14, -64, 7, -64)
+
+[connection signal="body_entered" from="." to="." method="OnCollisionEnter"]

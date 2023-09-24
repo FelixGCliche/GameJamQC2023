@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7jr3v3lqvaoa"]
+
+[ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="1_bpbnq"]
+[ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="2_43wwi"]
+[ext_resource type="PackedScene" uid="uid://dl2nd3gb0w5jb" path="res://Gameplay/Door/prf_Door.tscn" id="3_t0vx4"]
+[ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="4_6gxos"]
+
+[node name="scn_Level2" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_bpbnq")]
+visible = false
+
+[node name="Ceiling" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(960, 16)
+scale = Vector2(1920, 32)
+
+[node name="Floor" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(960, 1064)
+scale = Vector2(1920, 32)
+
+[node name="LeftWall" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(16, 540)
+scale = Vector2(32, 1080)
+
+[node name="RightWall" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(1904, 540)
+scale = Vector2(32, 1080)
+
+[node name="DoorStart" parent="." instance=ExtResource("3_t0vx4")]
+position = Vector2(333, 983)
+metadata/isStartDoor = true
+
+[node name="DoorFinish" parent="." instance=ExtResource("3_t0vx4")]
+position = Vector2(1442, 253)
+metadata/colorToUnlock = Color(0, 0, 1, 1)
+
+[node name="Platform5" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(1331, 843)
+scale = Vector2(200, 32)
+
+[node name="Platform6" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(773, 860)
+scale = Vector2(300, 32)
+
+[node name="Platform8" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(1529, 353)
+scale = Vector2(300, 32)
+
+[node name="Platform9" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(981, 546)
+scale = Vector2(300, 32)
+
+[node name="Player" parent="." instance=ExtResource("4_6gxos")]
+position = Vector2(1216, 560)
+
+[node name="Platform7" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(453, 572)
+scale = Vector2(200, 32)
+
+[node name="Platform10" parent="." instance=ExtResource("2_43wwi")]
+position = Vector2(241, 365)
+scale = Vector2(200, 32)
