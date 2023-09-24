@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://beeutdch2jpvs"]
+[gd_scene load_steps=11 format=3 uid="uid://beeutdch2jpvs"]
 
 [ext_resource type="Script" path="res://UI/Menu/MainMenu/MainMenu.cs" id="1_pbb23"]
 [ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://UI/whiteTexture.png" id="2_kkefl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/TitleGradient.cs" id="4_8yglb"]
 [ext_resource type="Texture2D" uid="uid://dkh0l4i44vuvp" path="res://UI/TitleGradient1D.tres" id="4_i0hk7"]
 [ext_resource type="Texture2D" uid="uid://uyj401l1v64g" path="res://UI/GhostPlayer.png" id="6_86sn6"]
+[ext_resource type="AudioStream" uid="uid://cx3wjqxvdvg0l" path="res://Music/Sounds/Background_music_menu.mp3" id="8_wvb7m"]
 
 [sub_resource type="Shader" id="Shader_dy1od"]
 code = "shader_type canvas_item;
@@ -238,6 +239,10 @@ script = ExtResource("4_8yglb")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(33, -20)
 texture = ExtResource("6_86sn6")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_wvb7m")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/ExitButton" to="." method="OnExitButtonPressed"]

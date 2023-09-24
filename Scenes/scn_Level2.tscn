@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7jr3v3lqvaoa"]
+[gd_scene load_steps=6 format=3 uid="uid://c7jr3v3lqvaoa"]
 
 [ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="1_bpbnq"]
 [ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="2_43wwi"]
 [ext_resource type="PackedScene" uid="uid://dl2nd3gb0w5jb" path="res://Gameplay/Door/prf_Door.tscn" id="3_t0vx4"]
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="4_6gxos"]
+[ext_resource type="AudioStream" uid="uid://c746xsj3lgo7k" path="res://Music/Sounds/Background_music_game.mp3" id="5_8jccw"]
 
 [node name="scn_Level2" type="Node2D"]
 
@@ -63,3 +64,7 @@ scale = Vector2(200, 32)
 [node name="Platform10" parent="." instance=ExtResource("2_43wwi")]
 position = Vector2(241, 365)
 scale = Vector2(200, 32)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8jccw")
+autoplay = true

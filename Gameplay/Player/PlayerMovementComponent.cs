@@ -118,10 +118,18 @@ namespace GameJamQC2023.Player
 
 		private Vector2 Jump(Vector2 velocity)
 		{
-			var jumped = Input.IsActionJustPressed("Jump");
+			AudioStreamPlayer2D soundPlayer = GetParent().GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+			AudioStream jumpSound = (AudioStream)GD.Load("res://Music/Sounds/Jump.mp3");
+            
+
+            var jumped = Input.IsActionJustPressed("Jump");
 			var jumping = Input.IsActionPressed("Jump");
 			if (jumped && nbJump > 0)
-				velocity.Y = nbJump < maxNbJump ? doubleJumpSpeed : jumpSpeed;
+			{
+                velocity.Y = nbJump < maxNbJump ? doubleJumpSpeed : jumpSpeed;
+				soundPlayer.Stream = jumpSound;
+                soundPlayer.Play();
+            }
 
 			if (velocity.Y > jumpVelocityFalloff)
 				velocity += Vector2.Up * gravity * fallMultiplier;
@@ -133,7 +141,11 @@ namespace GameJamQC2023.Player
 
 		private Vector2 Dash(Vector2 velocity, float direction, float delta)
 		{
-			if (dashTimer <= 0)
+            AudioStreamPlayer2D soundPlayer = GetParent().GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+            AudioStream dashSound = (AudioStream)GD.Load("res://Music/Sounds/Dash.mp3");
+            
+
+            if (dashTimer <= 0)
 				return velocity;
 
 			dashTimer -= delta;
@@ -143,21 +155,43 @@ namespace GameJamQC2023.Player
 			velocity.Y = 0;
 			velocity.X = Mathf.Clamp(velocity.X, -dashSpeed, dashSpeed);
 
-			return velocity;
+            soundPlayer.Stream = dashSound;
+            soundPlayer.Play();
+
+            return velocity;
 		}
 
 		private Vector2 Float(Vector2 velocity, float delta)
 		{
-			if (floatTimer <= 0)
+			AudioStreamPlayer2D soundPlayer = GetParent().GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+			AudioStream floatSound = (AudioStream)GD.Load("res://Music/Sounds/Float.mp3");
+
+            if (floatTimer > 0 && !soundPlayer.Playing)
+            {
+                soundPlayer.Stream = floatSound;
+                soundPlayer.Play();
+            }
+			//else if (floatTimer <= 0 && soundPlayer.Playing)
+			//{
+                
+   //         }
+
+            if (floatTimer <= 0)
+			{
 				return velocity;
+            }
 			
 			if (Input.IsActionJustReleased("Float"))
-				floatTimer = 0;
+			{
+                soundPlayer.Stop();
+                floatTimer = 0;
+            }
+				
 
 			floatTimer -= delta;
 			velocity.Y *= 0.1f;
 
-			return velocity;
+            return velocity;
 		}
 
 		private void ResetDash()
