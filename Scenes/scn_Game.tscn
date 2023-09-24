@@ -38,6 +38,7 @@ metadata/isStartDoor = true
 [node name="DoorFinish" parent="." instance=ExtResource("6_lsxpd")]
 position = Vector2(1131, 234)
 metadata/newScenePath = "Scenes/scn_Level2.tscn"
+metadata/colorToUnlock = Color(1, 1, 1, 1)
 
 [node name="Platform5" parent="." instance=ExtResource("3_kk71r")]
 position = Vector2(372, 883)

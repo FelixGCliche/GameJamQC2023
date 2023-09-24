@@ -35,6 +35,7 @@ metadata/isStartDoor = true
 
 [node name="DoorFinish" parent="." instance=ExtResource("3_t0vx4")]
 position = Vector2(1442, 253)
+metadata/colorToUnlock = Color(0, 0, 1, 1)
 
 [node name="Platform5" parent="." instance=ExtResource("2_43wwi")]
 position = Vector2(1331, 843)
