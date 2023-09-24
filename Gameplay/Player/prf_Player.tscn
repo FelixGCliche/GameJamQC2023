@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c385vmeqqbw3d"]
+[gd_scene load_steps=6 format=3 uid="uid://c385vmeqqbw3d"]
 
 [ext_resource type="Script" path="res://Gameplay/Player/PlayerController.cs" id="1_doi4v"]
 [ext_resource type="Script" path="res://Gameplay/Player/PlayerMovementComponent.cs" id="3_q6s0d"]
@@ -7,15 +7,29 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ec37s"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgkiq"]
+size = Vector2(48, 24)
+
 [node name="Player" type="Node2D"]
 script = ExtResource("1_doi4v")
 
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
+collision_layer = 5
 script = ExtResource("3_q6s0d")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="PlayerMovementComponent"]
+visible = false
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_ec37s")
 
 [node name="PlayerSprite" type="Sprite2D" parent="PlayerMovementComponent"]
 texture = ExtResource("3_rpqic")
+
+[node name="Area2D" type="Area2D" parent="PlayerMovementComponent"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMovementComponent/Area2D"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_pgkiq")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[connection signal="body_entered" from="PlayerMovementComponent/Area2D" to="." method="OnPlayerBodyEntered"]
