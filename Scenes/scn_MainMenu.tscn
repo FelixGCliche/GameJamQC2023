@@ -1,6 +1,99 @@
-[gd_scene load_steps=2 format=3 uid="uid://beeutdch2jpvs"]
+[gd_scene load_steps=10 format=3 uid="uid://beeutdch2jpvs"]
 
 [ext_resource type="Script" path="res://UI/Menu/MainMenu/MainMenu.cs" id="1_pbb23"]
+[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://UI/whiteTexture.png" id="2_kkefl"]
+[ext_resource type="Texture2D" uid="uid://bg0g1lsuytwqr" path="res://UI/WhiteRectangle.PNG" id="3_mkc1y"]
+[ext_resource type="FontFile" uid="uid://csm2mi3nxv1i1" path="res://UI/Inter-ExtraBold.ttf" id="3_ul6wi"]
+[ext_resource type="Script" path="res://Scenes/TitleGradient.cs" id="4_8yglb"]
+[ext_resource type="Texture2D" uid="uid://dkh0l4i44vuvp" path="res://UI/TitleGradient1D.tres" id="4_i0hk7"]
+[ext_resource type="Texture2D" uid="uid://uyj401l1v64g" path="res://UI/GhostPlayer.png" id="6_86sn6"]
+
+[sub_resource type="Shader" id="Shader_dy1od"]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D gradient: source_color;
+uniform float gradient_mix_amount = 2.0;
+
+void vertex(){
+
+}
+
+void fragment() {
+	vec4 current_color = texture(TEXTURE, UV);
+	
+	vec3 color1 = vec3(1, 0, 0); // BLUE
+	vec3 color112 = vec3(1, 0.5, 0); // BLUE
+	vec3 color12 = vec3(1, 1, 0); // BLUE
+	vec3 color122 = vec3(0.5, 1, 0); // BLUE
+	vec3 color2 = vec3(0, 1, 0); // GREEN
+	vec3 color223 = vec3(0, 1, 0.5); // GREEN
+	vec3 color23 = vec3(0, 1, 1); // GREEN
+	vec3 color233 = vec3(0, 0.5, 1); // GREEN
+	vec3 color3 = vec3(0, 0, 1); // RED
+	
+	float new_r;
+	float new_g;
+	float new_b;
+	
+	float ratio = SCREEN_UV.x;
+	float iratio = 1.0 - SCREEN_UV.x;
+	
+	if (ratio>=0.0f && ratio<=0.1f){
+		new_r = color1.r;
+		new_g = color1.g;
+		new_b = color1.b;
+	}
+	else if(ratio>0.1f && ratio<=0.2f){
+		new_r = color112.r;
+		new_g = color112.g;
+		new_b = color112.b;
+	}
+	else if(ratio>0.2f && ratio<=0.3f){
+		new_r = color12.r;
+		new_g = color12.g;
+		new_b = color12.b;
+	}
+	else if(ratio>0.3f && ratio<=0.4f){
+		new_r = color122.r;
+		new_g = color122.g;
+		new_b = color122.b;
+	}
+	else if(ratio>0.4f && ratio<=0.5f){
+		new_r = color2.r;
+		new_g = color2.g;
+		new_b = color2.b;
+	}
+	else if(ratio>0.5f && ratio<=0.6f){
+		new_r = color223.r;
+		new_g = color223.g;
+		new_b = color223.b;
+	}
+	else if(ratio>0.7f && ratio<=0.8f){
+		new_r = color23.r;
+		new_g = color23.g;
+		new_b = color23.b;
+	}
+	else if(ratio>0.8f && ratio<=0.9f){
+		new_r = color233.r;
+		new_g = color233.g;
+		new_b = color233.b;
+	}
+	else if(ratio>0.9f && ratio<=1.0f){
+		new_r = color3.r;
+		new_g = color3.g;
+		new_b = color3.b;
+	}
+	
+	COLOR = vec4(new_b,new_g,new_r,current_color.a);
+
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tobq3"]
+shader = SubResource("Shader_dy1od")
+shader_parameter/gradient_mix_amount = 3.0
+shader_parameter/gradient = ExtResource("4_i0hk7")
 
 [node name="scn_MainMenu" type="Control"]
 layout_mode = 3
@@ -13,27 +106,138 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pbb23")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -33.0
-offset_right = 64.0
-offset_bottom = 33.0
+offset_left = -990.0
+offset_top = -500.0
+offset_right = 990.0
+offset_bottom = 550.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mkc1y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = 1.0
+offset_right = -103.0
+offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Play"
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = -161.0
+offset_top = 87.0
+offset_right = 539.0
+offset_bottom = 237.0
+stretch = true
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer/Control2/SubViewportContainer"]
+
+[node name="Control" type="Control" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vertical Theme" type="VBoxContainer" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_direction = 1
+layout_mode = 0
+offset_left = 13.0
+offset_top = 15.0
+offset_right = 1933.0
+offset_bottom = 1095.0
+alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/Vertical Theme"]
+custom_minimum_size = Vector2(100, 200)
 layout_mode = 2
+
+[node name="Node" type="Node" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/Vertical Theme"]
+
+[node name="Square" type="Sprite2D" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/Vertical Theme/Node"]
+position = Vector2(995, 564)
+scale = Vector2(-122.34, 16.1713)
+texture = ExtResource("2_kkefl")
+
+[node name="Square" type="Sprite2D" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/Vertical Theme/Node/Square"]
+position = Vector2(992.591, 535.921)
+scale = Vector2(-127.952, 3.55784)
+texture = ExtResource("2_kkefl")
+
+[node name="Rectangle" type="Sprite2D" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/Vertical Theme/Node"]
+modulate = Color(0, 0.2, 0.294118, 1)
+position = Vector2(994, 575)
+scale = Vector2(0.434931, 1.23958)
+texture = ExtResource("3_mkc1y")
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_left = 922.0
+offset_top = 282.0
+offset_right = 1064.0
+offset_bottom = 382.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ul6wi")
+theme_override_font_sizes/font_size = 50
+text = "Play?"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control"]
+layout_mode = 2
+offset_left = 967.0
+offset_top = 775.0
+offset_right = 1022.0
+offset_bottom = 815.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ul6wi")
+theme_override_font_sizes/font_size = 25
 text = "Exit"
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="OnPlayButtonPressed"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="OnExitButtonPressed"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Control2/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(700, 150)
+render_target_update_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control2/SubViewportContainer/SubViewport"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_tobq3")
+clip_contents = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 441
+theme_override_font_sizes/bold_italics_font_size = 86
+bbcode_enabled = true
+text = "[center][b][i]S P E C T R A M [/i][/b]"
+autowrap_mode = 0
+context_menu_enabled = true
+script = ExtResource("4_8yglb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(33, -20)
+texture = ExtResource("6_86sn6")
+
+[connection signal="pressed" from="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/PlayButton" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/ExitButton" to="." method="OnExitButtonPressed"]
