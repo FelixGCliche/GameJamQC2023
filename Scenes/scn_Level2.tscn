@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7jr3v3lqvaoa"]
+[gd_scene load_steps=7 format=3 uid="uid://c7jr3v3lqvaoa"]
 
 [ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="1_bpbnq"]
+[ext_resource type="Script" path="res://Gameplay/GameController.cs" id="1_spepf"]
 [ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="2_43wwi"]
 [ext_resource type="PackedScene" uid="uid://dybi0c2fkvoj4" path="res://UI/Screen/SceneTransitionScreen/prf_sceneTransitionRect.tscn" id="2_utkvp"]
 [ext_resource type="PackedScene" uid="uid://dl2nd3gb0w5jb" path="res://Gameplay/Door/prf_Door.tscn" id="3_t0vx4"]
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="4_6gxos"]
 
 [node name="scn_Level2" type="Node2D"]
+script = ExtResource("1_spepf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
