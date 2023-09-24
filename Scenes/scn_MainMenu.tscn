@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://beeutdch2jpvs"]
+[gd_scene load_steps=15 format=3 uid="uid://beeutdch2jpvs"]
 
 [ext_resource type="Script" path="res://UI/Menu/MainMenu/MainMenu.cs" id="1_pbb23"]
 [ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://UI/whiteTexture.png" id="3_1onus"]
@@ -6,6 +6,12 @@
 [ext_resource type="Script" path="res://Scenes/TitleGradient.cs" id="4_8yglb"]
 [ext_resource type="Texture2D" uid="uid://dkh0l4i44vuvp" path="res://UI/TitleGradient1D.tres" id="4_i0hk7"]
 [ext_resource type="Texture2D" uid="uid://b453kn1873034" path="res://Gameplay/Player/player.png" id="7_hgy3k"]
+[ext_resource type="Texture2D" uid="uid://bi64tw55aj556" path="res://UI/Menu/Shift.png" id="7_p0oe1"]
+[ext_resource type="Texture2D" uid="uid://bpr0tejhb5sx4" path="res://UI/Menu/a.png" id="8_eyyjl"]
+[ext_resource type="Texture2D" uid="uid://cpqxe77dmob51" path="res://UI/Menu/d.png" id="9_8xpnn"]
+[ext_resource type="Texture2D" uid="uid://cu4ws50n74wx5" path="res://UI/Menu/w.png" id="10_5ydlm"]
+[ext_resource type="Texture2D" uid="uid://dmbj2westggy2" path="res://UI/Menu/Space.png" id="11_ipft0"]
+[ext_resource type="Texture2D" uid="uid://cqy7jk6hk4p8c" path="res://UI/Menu/r.png" id="12_bkuoj"]
 
 [sub_resource type="Shader" id="Shader_dy1od"]
 code = "shader_type canvas_item;
@@ -161,10 +167,10 @@ grow_vertical = 2
 custom_minimum_size = Vector2(100, 100)
 layout_direction = 1
 layout_mode = 0
-offset_left = 13.0
-offset_top = 15.0
-offset_right = 1933.0
-offset_bottom = 1095.0
+offset_left = -6.0
+offset_top = -341.0
+offset_right = 1914.0
+offset_bottom = 739.0
 alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/Vertical Theme"]
@@ -258,9 +264,41 @@ Music & Sounds
 	Assets found on Zapsplat.com"
 scroll_active = false
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(992, 498)
 texture = ExtResource("7_hgy3k")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Shift" type="Sprite2D" parent="Node2D"]
+position = Vector2(1200, 260)
+scale = Vector2(0.15, 0.121)
+texture = ExtResource("7_p0oe1")
+
+[node name="A" type="Sprite2D" parent="Node2D"]
+position = Vector2(1300, 260)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("8_eyyjl")
+
+[node name="D" type="Sprite2D" parent="Node2D"]
+position = Vector2(1500, 260)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_8xpnn")
+
+[node name="W" type="Sprite2D" parent="Node2D"]
+position = Vector2(1400, 160)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("10_5ydlm")
+
+[node name="Space" type="Sprite2D" parent="Node2D"]
+position = Vector2(1753, 285)
+scale = Vector2(0.283008, 0.100391)
+texture = ExtResource("11_ipft0")
+
+[node name="R" type="Sprite2D" parent="Node2D"]
+position = Vector2(1600, 160)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("12_bkuoj")
 
 [connection signal="pressed" from="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/ExitButton" to="." method="OnExitButtonPressed"]
