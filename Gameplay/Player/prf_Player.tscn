@@ -17,6 +17,8 @@ script = ExtResource("1_doi4v")
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
 collision_layer = 5
 script = ExtResource("3_q6s0d")
+acceleration = 100.0
+deceleration = 400.0
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="PlayerMovementComponent"]
 visible = false

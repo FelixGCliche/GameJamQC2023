@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cii0ie08pbkxp"]
 
 [ext_resource type="Script" path="res://Gameplay/Platform/Platform.cs" id="1_3g208"]
-[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://Gameplay/Platform/whiteTexture.png" id="2_cwy46"]
+[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://UI/whiteTexture.png" id="2_cwy46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5b1wy"]
 size = Vector2(0.8, 0.505)

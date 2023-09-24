@@ -10,7 +10,10 @@ namespace GameJamQC2023.Utils
             var blendG = Mathf.Clamp(baseColor.G + other.G, 0f, 1f);
             var blendB = Mathf.Clamp(baseColor.B + other.B, 0f, 1f);
 
-            return new(blendR, blendG, blendB);
+            var blend = new Godot.Color(blendR, blendG, blendB);
+            if(blend == Colors.White)
+                blend = Colors.Black;
+            return blend;
         }
     }
 }
