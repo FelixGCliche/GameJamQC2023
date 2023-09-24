@@ -91,7 +91,7 @@ namespace GameJamQC2023.Player
 			EmitSignal(SignalName.BlendedColorsUpdated, newColor);
 			EmitSignal(SignalName.HeldColorsUpdated, HeldColors.ToArray());
 			
-			spriteTexture.SelfModulate = newColor;
+			spriteTexture.SelfModulate = newColor == Colors.Black ? Colors.White : newColor ;
 		}
 	}
 }
