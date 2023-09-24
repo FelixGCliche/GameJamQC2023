@@ -38,5 +38,6 @@ script = ExtResource("4_oxjej")
 
 [connection signal="HeldColorsUpdated" from="." to="PlayerPowerController" method="OnPlayerHeldColorsUpdated"]
 [connection signal="body_entered" from="PlayerMovementComponent/Area2D" to="." method="OnPlayerBodyEntered"]
+[connection signal="BluePowerUpdated" from="PlayerPowerController" to="PlayerMovementComponent" method="OnBluePowerEnabled"]
 [connection signal="GreenPowerUpdated" from="PlayerPowerController" to="PlayerMovementComponent" method="OnGreenPowerUpdated"]
 [connection signal="RedPowerUpdated" from="PlayerPowerController" to="PlayerMovementComponent" method="OnRedPowerUpdated"]

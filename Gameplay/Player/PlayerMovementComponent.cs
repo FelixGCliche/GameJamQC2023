@@ -38,19 +38,26 @@ namespace GameJamQC2023.Player
 		[Export]
 		private float dashTime = 0.1f;
 
+		[Export]
+		private float floatTime = 3f;
+
 		private int maxNbJump = 2;
 		private int nbJump = 1;
 		private bool doubleJumpEnabled;
 
-		private bool dashEnabled = true;
+		private bool dashEnabled;
 		private int nbDash = 1;
 		private float dashTimer;
+
+		private bool floatEnabled;
+		private int nbFloat = 1;
+		private float floatTimer;
 
 		private float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 		public override void _Ready()
 		{
-			if(doubleJumpEnabled)
+			if (doubleJumpEnabled)
 				nbJump = maxNbJump;
 		}
 
@@ -60,9 +67,10 @@ namespace GameJamQC2023.Player
 
 			if (!IsOnFloor())
 				movementVelocity.Y += gravity * (float) delta;
-			
+
 			var direction = Input.GetAxis("MoveLeft", "MoveRight");
 			movementVelocity = Move(movementVelocity, direction);
+
 			if (Input.IsActionJustReleased("Jump"))
 				nbJump--;
 			movementVelocity = Jump(movementVelocity);
@@ -75,12 +83,21 @@ namespace GameJamQC2023.Player
 
 			movementVelocity = Dash(movementVelocity, direction, (float) delta);
 
+			if (floatEnabled && Input.IsActionPressed("Float") && !IsOnFloor() && nbFloat > 0)
+			{
+				floatTimer = floatTime;
+				nbFloat--;
+			}
+
+			movementVelocity = Float(movementVelocity, (float) delta);
+
 			Velocity = movementVelocity;
 			MoveAndSlide();
 
 			if (IsOnFloor())
 				nbJump = doubleJumpEnabled ? maxNbJump : 1;
 			ResetDash();
+			ResetFloat();
 		}
 
 		private Vector2 Move(Vector2 velocity, float direction)
@@ -92,7 +109,7 @@ namespace GameJamQC2023.Player
 
 			if (dashEnabled && dashTimer > 0)
 				return velocity;
-			
+
 			velocity.X = IsOnFloor()
 				? Mathf.Clamp(velocity.X, -maxGroundSpeed, maxGroundSpeed)
 				: Mathf.Clamp(velocity.X, -maxAirSpeed, maxAirSpeed);
@@ -114,11 +131,11 @@ namespace GameJamQC2023.Player
 			return velocity;
 		}
 
-		private Vector2 Dash(Vector2 velocity,float direction, float delta)
+		private Vector2 Dash(Vector2 velocity, float direction, float delta)
 		{
-			if (dashTimer <= 0) 
+			if (dashTimer <= 0)
 				return velocity;
-			
+
 			dashTimer -= delta;
 
 			if (direction != 0)
@@ -129,10 +146,30 @@ namespace GameJamQC2023.Player
 			return velocity;
 		}
 
+		private Vector2 Float(Vector2 velocity, float delta)
+		{
+			if (floatTimer <= 0)
+				return velocity;
+			
+			if (Input.IsActionJustReleased("Float"))
+				floatTimer = 0;
+
+			floatTimer -= delta;
+			velocity.Y *= 0.1f;
+
+			return velocity;
+		}
+
 		private void ResetDash()
 		{
-			if (dashEnabled && IsOnFloor() && dashTimer < 0)
+			if (dashEnabled && IsOnFloor() && dashTimer <= 0)
 				nbDash = 1;
+		}
+
+		private void ResetFloat()
+		{
+			if (floatEnabled && IsOnFloor() && floatTimer <= 0)
+				nbFloat = 1;
 		}
 
 		private void OnRedPowerUpdated(bool enabled)
@@ -143,6 +180,11 @@ namespace GameJamQC2023.Player
 		private void OnGreenPowerUpdated(bool enabled)
 		{
 			dashEnabled = enabled;
+		}
+
+		private void OnBluePowerEnabled(bool enabled)
+		{
+			floatEnabled = enabled;
 		}
 	}
 }
