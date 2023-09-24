@@ -23,9 +23,9 @@ namespace GameJamQC2023.Platform
 			for (var i = 0; i < 2; i++)
 				HeldColors.Enqueue(Colors.Black);
 			EnqueueColor(baseColor);
-			
-			spriteTexture.SelfModulate = GetBlendedColor();
-		}
+
+            spriteTexture.SelfModulate = GetBlendedColor() == Colors.Black ? Colors.White : GetBlendedColor();
+        }
 
 		public Godot.Color GetBlendedColor()
 		{
@@ -48,10 +48,10 @@ namespace GameJamQC2023.Platform
 			}
 
 			HeldColors.Enqueue(newColor);
-			spriteTexture.SelfModulate = GetBlendedColor();
+            spriteTexture.SelfModulate = GetBlendedColor() == Colors.Black ? Colors.White : GetBlendedColor();
 
-			return discard;
-		}
+            return discard;
+        }
 
 		public void ResetColor()
 		{
