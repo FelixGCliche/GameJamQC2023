@@ -1,74 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://drfj2w2ujn5e"]
+[gd_scene load_steps=4 format=3 uid="uid://cii0ie08pbkxp"]
 
 [ext_resource type="Script" path="res://Gameplay/Platform/Platform.cs" id="1_3g208"]
-[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://UI/whiteTexture.png" id="3_npd68"]
-[ext_resource type="Resource" uid="uid://txo3tqwxooox" path="res://System/Color/ColorData/Data/Black.tres" id="4_o3b7i"]
+[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://Gameplay/Platform/whiteTexture.png" id="2_cwy46"]
 
-[sub_resource type="CSharpScript" id="CSharpScript_qnq4h"]
-script/source = "using Godot;
-using System;
-
-public interface IColorable
-{
-    public ColorData CurrentColor { get; }
-    public void SendColorData();
-    public void ReceiveColorData(ColorData colorData);
-    public void BlendColorData();
-    public void DropColorData();
-}
-
-public partial class BaseColorController : Node2D, IColorable
-{
-    [Signal]
-    public delegate void OnColorChangedEventHandler(ColorData data);
-
-    [Export]
-    private ColorData currentColor;
-
-    public ColorData CurrentColor => currentColor;
-
-    public override void _EnterTree()
-    {
-        if (currentColor == null)
-            currentColor = GD.Load<ColorData>(\"res://System/Color/ColorData/Data/Black.tres\");
-        base._EnterTree();
-    }
-
-    public void SendColorData()
-    {
-        EmitSignal(SignalName.OnColorChanged, currentColor);
-    }
-
-    public void ReceiveColorData(ColorData colorData)
-    {
-        currentColor = colorData;
-        GD.Print($\"{Name} has new color: {currentColor.Name}\");
-    }
-
-    public void BlendColorData()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void DropColorData()
-    {
-        throw new NotImplementedException();
-    }
-}
-"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5b1wy"]
+size = Vector2(0.8, 0.505)
 
 [node name="Platform" type="StaticBody2D"]
 script = ExtResource("1_3g208")
-colorData = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_npd68")
+texture = ExtResource("2_cwy46")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PackedVector2Array(0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5)
 
-[node name="ColorController" type="Node2D" parent="."]
-scale = Vector2(100, 100)
-script = SubResource("CSharpScript_qnq4h")
-currentColor = ExtResource("4_o3b7i")
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.2525)
+shape = SubResource("RectangleShape2D_5b1wy")
+debug_color = Color(0, 0.6, 0, 0.419608)

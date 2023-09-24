@@ -1,8 +1,14 @@
-﻿public interface IColorable
+﻿using System.Collections.Generic;
+
+namespace GameJamQC2023.Color
 {
-    public ColorData ColorData { get; }
-    public void SendColorData();
-    public void ReceiveColorData(ColorData colorData);
-    public void BlendColorData();
-    public void DropColorData();
+    public interface IColorable
+    {
+        public Queue<Godot.Color> HeldColors { get; }
+        public Godot.Color GetBlendedColor();
+
+        public Godot.Color EnqueueColor(Godot.Color newColor);
+
+        public void ResetColor();
+    }
 }
