@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfqnx18ajrglo"]
+
+[ext_resource type="Script" path="res://Gameplay/GameController.cs" id="1_yg3vg"]
+[ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="2_qdil3"]
+[ext_resource type="PackedScene" uid="uid://dybi0c2fkvoj4" path="res://UI/Screen/SceneTransitionScreen/prf_sceneTransitionRect.tscn" id="3_uqe3s"]
+[ext_resource type="PackedScene" uid="uid://bfxh8584a1vx2" path="res://UI/HUD/ColorHUD.tscn" id="4_t8yl1"]
+[ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="5_lwnc2"]
+[ext_resource type="PackedScene" uid="uid://dl2nd3gb0w5jb" path="res://Gameplay/Door/prf_Door.tscn" id="6_n3oux"]
+[ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="7_bdpq4"]
+
+[node name="scn_Level2" type="Node2D"]
+script = ExtResource("1_yg3vg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_qdil3")]
+visible = false
+
+[node name="SceneTransitionRect" parent="CanvasLayer" instance=ExtResource("3_uqe3s")]
+
+[node name="ColorHUD" parent="CanvasLayer" instance=ExtResource("4_t8yl1")]
+
+[node name="Ceiling" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(960, 16)
+scale = Vector2(1920, 32)
+
+[node name="Floor" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(960, 1064)
+scale = Vector2(1920, 32)
+
+[node name="LeftWall" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(16, 540)
+scale = Vector2(32, 1080)
+
+[node name="RightWall" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(1904, 540)
+scale = Vector2(32, 1080)
+
+[node name="DoorStart" parent="." instance=ExtResource("6_n3oux")]
+position = Vector2(333, 983)
+metadata/isStartDoor = true
+
+[node name="DoorFinish" parent="." instance=ExtResource("6_n3oux")]
+position = Vector2(1036, 249)
+metadata/newScenePath = "Scenes/scn_EndMenu.tscn"
+metadata/colorToUnlock = Color(1, 1, 0, 1)
+
+[node name="Platform5" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(1244, 841)
+scale = Vector2(200, 32)
+
+[node name="Platform11" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(1584, 404)
+scale = Vector2(300, 32)
+
+[node name="Platform8" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(1034, 330)
+scale = Vector2(300, 32)
+
+[node name="Platform9" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(1370, 629)
+scale = Vector2(300, 32)
+baseColor = Color(0, 1, 0, 1)
+
+[node name="Player" parent="." instance=ExtResource("7_bdpq4")]
+position = Vector2(1216, 560)
+
+[node name="Platform7" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(752, 841)
+scale = Vector2(200, 32)
+baseColor = Color(1, 0, 0, 1)
+
+[node name="Platform10" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(994, 747)
+scale = Vector2(200, 32)
+baseColor = Color(0, 0, 1, 1)
+
+[node name="Platform12" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(487, 654)
+scale = Vector2(200, 32)
+baseColor = Color(0, 1, 0, 1)
+
+[node name="Platform14" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(665, 458)
+scale = Vector2(200, 32)
+baseColor = Color(0, 0, 1, 1)
+
+[node name="Platform13" parent="." instance=ExtResource("5_lwnc2")]
+position = Vector2(566, 283)
+scale = Vector2(200, 32)
+baseColor = Color(1, 0, 1, 1)
+
+[connection signal="HeldColorsUpdated" from="Player" to="CanvasLayer/ColorHUD" method="OnPlayerHeldColorsUpdated"]
