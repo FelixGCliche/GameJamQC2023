@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://beeutdch2jpvs"]
+[gd_scene load_steps=9 format=3 uid="uid://cosu3poi8drft"]
 
-[ext_resource type="Script" path="res://UI/Menu/MainMenu/MainMenu.cs" id="1_pbb23"]
-[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://Gameplay/Platform/whiteTexture.png" id="3_1onus"]
-[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://UI/whiteTexture.png" id="3_roe1u"]
-[ext_resource type="FontFile" uid="uid://csm2mi3nxv1i1" path="res://UI/Inter-ExtraBold.ttf" id="3_ul6wi"]
-[ext_resource type="Script" path="res://Scenes/TitleGradient.cs" id="4_8yglb"]
-[ext_resource type="Texture2D" uid="uid://dkh0l4i44vuvp" path="res://UI/TitleGradient1D.tres" id="4_i0hk7"]
-[ext_resource type="Texture2D" uid="uid://b453kn1873034" path="res://Gameplay/Player/player.png" id="7_hgy3k"]
+[ext_resource type="Script" path="res://UI/Menu/MainMenu/MainMenu.cs" id="1_8y8xt"]
+[ext_resource type="Texture2D" uid="uid://bkbuvx31u8fd3" path="res://UI/whiteTexture.png" id="2_i7crx"]
+[ext_resource type="FontFile" uid="uid://csm2mi3nxv1i1" path="res://UI/Inter-ExtraBold.ttf" id="3_8r6lb"]
+[ext_resource type="Texture2D" uid="uid://dkh0l4i44vuvp" path="res://UI/TitleGradient1D.tres" id="4_ge4rg"]
+[ext_resource type="Script" path="res://Scenes/TitleGradient.cs" id="5_ogbtg"]
+[ext_resource type="Texture2D" uid="uid://b453kn1873034" path="res://Gameplay/Player/player.png" id="6_px32v"]
 
 [sub_resource type="Shader" id="Shader_dy1od"]
 code = "shader_type canvas_item;
@@ -102,7 +101,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tobq3"]
 shader = SubResource("Shader_dy1od")
 shader_parameter/gradient_mix_amount = 3.0
-shader_parameter/gradient = ExtResource("4_i0hk7")
+shader_parameter/gradient = ExtResource("4_ge4rg")
 
 [node name="scn_MainMenu" type="Control"]
 layout_mode = 3
@@ -111,7 +110,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pbb23")
+script = ExtResource("1_8y8xt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -122,7 +121,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_1onus")
+texture = ExtResource("2_i7crx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -142,10 +141,10 @@ grow_vertical = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Control2"]
 layout_mode = 0
-offset_left = -161.0
-offset_top = 87.0
-offset_right = 539.0
-offset_bottom = 237.0
+offset_left = -798.0
+offset_top = -400.0
+offset_right = 1105.0
+offset_bottom = -8.0
 stretch = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer/Control2/SubViewportContainer"]
@@ -177,30 +176,30 @@ layout_mode = 2
 [node name="Square" type="Sprite2D" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/Vertical Theme/Node"]
 position = Vector2(995, 560)
 scale = Vector2(-121.046, 16)
-texture = ExtResource("3_roe1u")
+texture = ExtResource("2_i7crx")
 
 [node name="Square" type="Sprite2D" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/Vertical Theme/Node/Square"]
 position = Vector2(992.591, 535.921)
 scale = Vector2(-127.952, 3.55784)
-texture = ExtResource("3_roe1u")
+texture = ExtResource("2_i7crx")
 
 [node name="Rectangle" type="Sprite2D" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/Vertical Theme/Node"]
 modulate = Color(0, 0.2, 0.294118, 1)
 position = Vector2(995.25, 580)
 scale = Vector2(121.5, 25)
-texture = ExtResource("3_1onus")
+texture = ExtResource("2_i7crx")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-offset_left = 922.0
-offset_top = 282.0
-offset_right = 1064.0
-offset_bottom = 382.0
+offset_left = 850.0
+offset_top = 847.0
+offset_right = 1147.0
+offset_bottom = 947.0
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_ul6wi")
+theme_override_fonts/font = ExtResource("3_8r6lb")
 theme_override_font_sizes/font_size = 50
-text = "Play"
+text = "Play Again?"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control"]
 layout_mode = 2
@@ -209,14 +208,14 @@ offset_top = 775.0
 offset_right = 1022.0
 offset_bottom = 815.0
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_ul6wi")
+theme_override_fonts/font = ExtResource("3_8r6lb")
 theme_override_font_sizes/font_size = 25
 text = "Exit"
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/Control2/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(700, 150)
+size = Vector2i(1903, 392)
 render_target_update_mode = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control2/SubViewportContainer/SubViewport"]
@@ -229,17 +228,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 441
-theme_override_font_sizes/bold_italics_font_size = 86
+theme_override_font_sizes/bold_italics_font_size = 250
 bbcode_enabled = true
 text = "[center][b][i]S P E C T R A M [/i][/b]"
 autowrap_mode = 0
 context_menu_enabled = true
-script = ExtResource("4_8yglb")
+script = ExtResource("5_ogbtg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(992, 498)
-texture = ExtResource("7_hgy3k")
+position = Vector2(994, 512)
+texture = ExtResource("6_px32v")
 
 [connection signal="pressed" from="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/PlayButton" to="." method="OnPlayButtonPressed"]
 [connection signal="pressed" from="CanvasLayer/Control2/SubViewportContainer/CanvasLayer/Control/ExitButton" to="." method="OnExitButtonPressed"]
