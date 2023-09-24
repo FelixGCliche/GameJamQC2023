@@ -31,15 +31,27 @@ public partial class Door : Area2D
 
 	private void OnCollisionEnter(Node2D body)
 	{
-		if ((bool) GetMeta("isStartDoor"))
+        AudioStreamPlayer2D soundPlayer = GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D");
+		AudioStream lockedSound = (AudioStream)GD.Load("res://Music/Sounds/Locked_Door.mp3");
+        AudioStream OpenSound = (AudioStream)GD.Load("res://Music/Sounds/Open_Door.mp3");
+
+        if ((bool) GetMeta("isStartDoor"))
 			return;
+			
 
 		if (body.GetParent() is not PlayerController player)
 			return;
 
 		if (player.GetBlendedColor() == lockColor)
+        {
+            soundPlayer.Stream = OpenSound;
+            soundPlayer.Play();
             transitionRect.transitionTo((string)GetMeta("newScenePath"));
-        else
-			GD.Print($"Lock color is {lockColor} and you are {player.GetBlendedColor()}");
-	}
+        }
+		else
+        {
+            soundPlayer.Stream = lockedSound;
+            soundPlayer.Play();
+        }
+    }
 }

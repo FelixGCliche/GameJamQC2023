@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo22e7avjfd3w"]
+[gd_scene load_steps=9 format=3 uid="uid://bo22e7avjfd3w"]
 
 [ext_resource type="Script" path="res://Gameplay/GameController.cs" id="1_jivg8"]
 [ext_resource type="PackedScene" uid="uid://byl8i6kcqor1l" path="res://UI/Menu/PauseMenu/prf_PauseMenu.tscn" id="2_2ar7n"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cii0ie08pbkxp" path="res://Gameplay/Platform/prf_platform.tscn" id="3_w34kt"]
 [ext_resource type="PackedScene" uid="uid://dl2nd3gb0w5jb" path="res://Gameplay/Door/prf_Door.tscn" id="4_4inmh"]
 [ext_resource type="PackedScene" uid="uid://c385vmeqqbw3d" path="res://Gameplay/Player/prf_Player.tscn" id="5_ad2q4"]
+[ext_resource type="AudioStream" uid="uid://c746xsj3lgo7k" path="res://Music/Sounds/Background_music_game.mp3" id="7_rfftp"]
 
 [node name="scn_Game" type="Node2D"]
 script = ExtResource("1_jivg8")
@@ -74,5 +75,9 @@ position = Vector2(392, 242)
 scale = Vector2(200, 32)
 
 [node name="Player" parent="." instance=ExtResource("5_ad2q4")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_rfftp")
+autoplay = true
 
 [connection signal="HeldColorsUpdated" from="Player" to="CanvasLayer/ColorHUD" method="OnPlayerHeldColorsUpdated"]

@@ -23,4 +23,6 @@ texture = ExtResource("3_qfsav")
 visible = false
 polygon = PackedVector2Array(18, -60.5, 18, -59, 32, -48, 32, -45.7, 38, -37.7, 38, -34.4, 41, -26.4, 41, 58, -48, 58, -48, -29.4, -42.4, -44, -41, -44, -34, -54, -31.8, -54, -25.8, -60, -23.4, -60, -14, -63.4, -14, -64, 7, -64)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="OnCollisionEnter"]

@@ -36,6 +36,8 @@ debug_color = Color(0, 0.6, 0, 0.419608)
 [node name="PlayerPowerController" type="Node2D" parent="."]
 script = ExtResource("4_oxjej")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="BlendedColorsUpdated" from="." to="PlayerPowerController" method="OnPlayerBlendedColorsUpdated"]
 [connection signal="body_entered" from="PlayerMovementComponent/Area2D" to="." method="OnPlayerBodyEntered"]
 [connection signal="BluePowerUpdated" from="PlayerPowerController" to="PlayerMovementComponent" method="OnBluePowerEnabled"]
