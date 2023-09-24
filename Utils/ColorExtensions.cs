@@ -2,7 +2,7 @@
 
 namespace GameJamQC2023.Utils
 {
-    public static class ColorBlendHandler
+    public static class ColorExtensions
     {
         public static Godot.Color RgbBlend(this Godot.Color baseColor, Godot.Color other)
         {

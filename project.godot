@@ -60,3 +60,6 @@ DropColor={
 2d_render/layer_1="wall"
 2d_render/layer_2="player"
 2d_render/layer_3="color"
+2d_physics/layer_1="Wall"
+2d_physics/layer_2="Color"
+2d_physics/layer_3="Door"

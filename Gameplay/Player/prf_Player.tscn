@@ -14,7 +14,7 @@ size = Vector2(48, 24)
 script = ExtResource("1_doi4v")
 
 [node name="PlayerMovementComponent" type="CharacterBody2D" parent="."]
-collision_layer = 0
+collision_layer = 5
 script = ExtResource("3_q6s0d")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="PlayerMovementComponent"]
